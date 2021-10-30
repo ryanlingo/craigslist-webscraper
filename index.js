@@ -15,10 +15,16 @@ async function main() {
     .map((index, element) => {
       const titleElement = $(element).find(".result-title");
       const timeElement = $(element).find(".result-date");
+      const hoodElement = $(element).find(".result-hood");
       const title = $(titleElement).text();
       const url = $(titleElement).attr("href");
       const datePosted = new Date($(timeElement).attr("datetime"));
-      return { title, url, datePosted };
+      const hood = $(hoodElement)
+        .text()
+        .replace("(", "")
+        .replace(")", "")
+        .trim();
+      return { title, url, datePosted, hood };
     })
     .get();
   console.log(results);
